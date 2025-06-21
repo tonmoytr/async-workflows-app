@@ -5,10 +5,10 @@ import { buttonVariants } from "@/components/ui/button";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/contact" },
-  { label: "Services", href: "/contact/comments" },
-  { label: "Contact", href: "/payments" },
-  { label: "Login", href: "/suspense-demo" },
+  { label: "Contact", href: "/contact" },
+  { label: "Comments", href: "/contact/comments" },
+  { label: "Payment", href: "/payments" },
+  { label: "Suspense-Demo", href: "/suspense-demo" },
 ];
 
 export default function Navbar() {
