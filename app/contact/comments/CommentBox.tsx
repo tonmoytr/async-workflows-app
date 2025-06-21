@@ -2,6 +2,7 @@
 
 import { useState, useOptimistic, useTransition } from "react";
 import { addComment } from "@/actions/comments";
+import { useFormStatus } from "react-dom";
 
 type Comment = { id: string; message: string };
 
@@ -10,6 +11,7 @@ export default function CommentBox({
 }: {
   initialComments: Comment[];
 }) {
+  const { pending } = useFormStatus();
   const [text, setText] = useState("");
   const [comments, setComments] = useState(initialComments);
 
@@ -63,10 +65,15 @@ export default function CommentBox({
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        disabled={pending}
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
       >
-        Post
+        {pending ? "Posting..." : "Post"}
       </button>
+
+      {isPending && (
+        <span className="text-sm text-gray-500 ml-2">Updating...</span>
+      )}
 
       <ul className="space-y-2 mt-4 min-h-[160px]">
         {paginatedComments.map((comment) => (
